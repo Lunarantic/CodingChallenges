@@ -38,7 +38,7 @@ import java.util.*;
  * 
  * Input Constraints:
  * 1≤|S|≤10^2
- * |S| denotes length of string s. 
+ * |S| denotes length of string S. 
  * 1≤Q≤|S|
  * 1≤M≤10^3
  * 1≤ind≤|s|, all ind values are unique. 
@@ -78,31 +78,35 @@ class StringOperations {
     public static void main(String args[] ) throws Exception {
     	
     	Scanner s = new Scanner(System.in);
-        String run = s.nextLine();
-        List<Integer> outs = new LinkedList<>();
-        for (int i = 0; i < Integer.parseInt(run); i++) {
-        	s.nextLine();
-        	String inc = s.nextLine();
-        	List<Integer> studs = new LinkedList<>();
-        	int c = 0;
-        	for (String split : inc.split(" ")) {
-        		int n = Integer.parseInt(split);
-        		int pos = -1;
-        		for (Integer pc : studs) {
-        			if (n < pc) {
-        				break;
-        			}
-        			pos++;
-        		}
-        		if (pos == -1){
-        			c += -1;}
-        		else{
-        			c += studs.get(pos);}
-        		studs.add(pos+1, n);
-        	}
-        	outs.add(c);
+        String str = s.nextLine();
+        String qString = s.nextLine();
+        List<String> qList = new ArrayList<>();
+        for (int i = 0; i < Integer.parseInt(qString); i++) {
+        	qList.add(s.nextLine());
         }
-        outs.forEach(I->{System.out.println(I);});
+        String mString = s.nextLine();
+        List<String> mList = new ArrayList<>();
+        for (int i = 0; i < Integer.parseInt(mString); i++) {
+        	mList.add(s.nextLine());
+        }
         s.close();
+        for (String q: qList) {
+        	String[] split = q.split(" ");
+        	str = str.substring(0, Integer.parseInt(split[0])-1) + split[1] + str.substring(Integer.parseInt(split[0]));
+        }
+        System.out.println(str);
+        String fin = str;
+        for (String m: mList) {
+        	String[] split = m.split(" ");
+        	fin = fin.substring(0, Integer.parseInt(split[0])-1) + (new StringBuilder(fin.substring(Integer.parseInt(split[0]) - 1, Integer.parseInt(split[1]))).reverse().toString()) + fin.substring(Integer.parseInt(split[1]));
+        }
+        System.out.println(fin);
+        int icnt = 0;
+        for (int i = 0; i < str.length(); i++) {
+        	if (str.charAt(i) == fin.charAt(i)) {
+        		++icnt;
+        	}
+        }
+        System.out.println(icnt);
     }
 }
