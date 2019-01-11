@@ -23,14 +23,15 @@ public class BraceExpansion {
 				StringBuilder seq = new StringBuilder();
 				seq.append(str.substring(0,  o));
 				seq.append(sequence(s, e));
-				seq.append(p+1);
+				seq.append(str.substring(p+1));
 				str = seq.toString();
 			} catch (NumberFormatException e1) {
-				if (st.length() == 1 && en.length() == 1) {
+				if (st.length() == 1 && en.length() == 1
+						&& Character.isLetter(st.charAt(0)) && Character.isLetter(en.charAt(0))) {
 					StringBuilder seq = new StringBuilder();
 					seq.append(str.substring(0,  o));
 					seq.append(sequence(st.charAt(0), en.charAt(0)));
-					seq.append(p+1);
+					seq.append(str.substring(p+1));
 					str = seq.toString();
 				}
 			}
@@ -95,8 +96,8 @@ public class BraceExpansion {
 	}
 	
 	private static StringBuilder sequence(int s, int e) {
-		System.out.println(s + " :: " + e);
-		StringBuilder output = new StringBuilder('{');
+		StringBuilder output = new StringBuilder();
+		output.append('{');
 		while (s < e) {
 			output.append(s);
 			output.append(',');
@@ -108,13 +109,25 @@ public class BraceExpansion {
 	}
 	
 	private static StringBuilder sequence(char s, char e) {
-		StringBuilder output = new StringBuilder('{');
-		while (s < e) {
+		StringBuilder output = new StringBuilder();
+		output.append('{');
+		if (s < e) {
+			while (s < e) {
+				if (s != '\\')
+					output.append((char)s);
+				output.append(',');
+				++s;
+			}
 			output.append((char)s);
-			output.append(',');
-			++s;
+		} else {
+			while (s > e) {
+				if (s != '\\')
+					output.append((char)s);
+				output.append(',');
+				--s;
+			}
+			output.append((char)s);
 		}
-		output.append((char)s);
 		output.append('}');
 		return output;
 	}
