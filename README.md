@@ -25,6 +25,11 @@ Solutions of various Coding Challenges
       <td align="center"><a href="/Lunarantic/CodingChallenges/blob/master/Java/src/hackerearth/cognizant/SchoolPrayer.java">SchoolPrayer</a></td>
       <td align="center">Add new elements in string in ascending order, and total the value of each entries ascending number in list or -1 if none</td>
     </tr>
+    <tr>
+      <td rowspan="3">Motorola</td>
+      <td align="center"><a href="/Lunarantic/CodingChallenges/blob/master/Java/src/codility/motorola/AsciiArt.md">AsciiArt</a></td>
+      <td align="center">Print ascii art of particular size as mentioned</td>
+    </tr>
   </tbody>
 </table>
 
